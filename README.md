@@ -1,8 +1,8 @@
 # React Query or Tanstack Query
 
-    Handling HTTP Requests With Ease
+Handling HTTP Requests With Ease
 
-    - [Tanstact Doc](https://tanstack.com/query/latest/docs/react/overview)
+- [Tanstack Doc](https://tanstack.com/query/latest/docs/react/overview.com)
 
 ## React + Vite
 
