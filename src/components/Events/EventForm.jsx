@@ -14,7 +14,7 @@ export default function EventForm({ inputData, onSubmit, children }) {
 
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
-
+    
     onSubmit({ ...data, image: selectedImage });
   }
 
