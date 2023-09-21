@@ -13,11 +13,15 @@ export default function EventDetails() {
     queryFn: ({ signal }) => fetchEvent({ signal, id: params.id }),
   });
 
+  /**
+   * refetchType: 'none', => allows you not to retrieve the active request
+   */
   const { mutate } = useMutation({
     mutationFn: deleteEvent,
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ['events'],
+        refetchType: 'none',
       });
       navigate('/events');
     },
