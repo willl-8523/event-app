@@ -11,9 +11,8 @@ export default function FindEventSection() {
 
   const { data, isPending, isError, error } = useQuery({
     queryKey: ['events', { search: searchTerm }],
-    queryFn: () => fetchEvents(searchTerm),
+    queryFn: ({ signal }) => fetchEvents({ signal, searchTerm }),
   });
-  console.log(data, isPending, isError, error);
 
   let content = <p>Please enter a search term and to find events.</p>;
 
