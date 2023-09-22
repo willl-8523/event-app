@@ -81,7 +81,7 @@ export default function EventDetails() {
     content = (
       <>
         <header>
-          <h1>EVENT TITLE</h1>
+          <h1>{data.title}</h1>
           <nav>
             <button onClick={handleStartDelete}>Delete</button>
             <Link to="edit">Edit</Link>
