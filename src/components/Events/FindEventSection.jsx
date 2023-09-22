@@ -10,9 +10,9 @@ export default function FindEventSection() {
   const [searchTerm, setSearchTerm] = useState();
 
   const { data, isLoading, isError, error } = useQuery({
-    queryKey: ['events', { search: searchTerm }],
-    queryFn: ({ signal }) => fetchEvents({ signal, searchTerm }),
-    enabled: searchTerm !== undefined
+    queryKey: ['events', { searchTerm: searchTerm }],
+    queryFn: ({ signal, queryKey }) => fetchEvents({ signal, ...queryKey[1] }),
+    enabled: searchTerm !== undefined,
   });
 
   let content = <p>Please enter a search term and to find events.</p>;
@@ -32,7 +32,7 @@ export default function FindEventSection() {
 
   if (data) {
     content = (
-      <ul>
+      <ul className='events-list'>
         {data.map((event) => (
           <li key={event.id}>
             <EventItem event={event} />
