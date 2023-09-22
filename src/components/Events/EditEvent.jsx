@@ -3,7 +3,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import Modal from '../UI/Modal.jsx';
 import EventForm from './EventForm.jsx';
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { fetchEvent, updateEvent } from '../../utils/http.js';
+import { fetchEvent, queryClient, updateEvent } from '../../utils/http.js';
 import LoadingIndicator from '../UI/LoadingIndicator.jsx';
 import ErrorBlock from '../UI/ErrorBlock.jsx';
 
@@ -16,8 +16,45 @@ export default function EditEvent() {
     queryFn: ({ signal }) => fetchEvent({ signal, id: params.id }),
   });
 
+  /**
+   * UPDATE DATA IN CACHE: https://tanstack.com/query/v4/docs/react/guides/optimistic-updates
+   *
+   * queryClient.cancelQueries =>
+   * https://tanstack.com/query/v4/docs/react/reference/QueryClient#queryclientcancelqueries
+   *
+   * queryClient.setQueryData =>
+   * https://tanstack.com/query/v4/docs/react/reference/QueryClient#queryclientsetquerydata
+   *
+   * queryClient.getQueryData =>
+   * https://tanstack.com/query/v4/docs/react/reference/QueryClient#queryclientgetquerydata
+   */
+
   const { mutate } = useMutation({
     mutationFn: updateEvent,
+    onMutate: async (data) => {
+      const newEvent = data.event;
+
+      await queryClient.cancelQueries({
+        queryKey: ['events', { id: params.id }],
+      });
+
+      const previousEvent = queryClient.getQueryData([
+        'events',
+        { id: params.id },
+      ]);
+      queryClient.setQueryData(['events', { id: params.id }], newEvent);
+
+      return { previousEvent }; // {previousEvent: previousEvent}
+    },
+    onError: (error, data, context) => {
+      queryClient.setQueryData(
+        ['events', { id: params.id }],
+        context.previousEvent
+      );
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries(['events', { id: params.id }]);
+    },
   });
 
   function handleSubmit(formData) {
