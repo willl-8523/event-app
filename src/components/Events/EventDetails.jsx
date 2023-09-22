@@ -109,7 +109,7 @@ export default function EventDetails() {
         <Modal onClose={handleStopDelete}>
           <h2>Are you sure?</h2>
           <p>
-            Do you realley want to delete this event? This action cannot be
+            Do you really want to delete this event? This action cannot be
             undone.
           </p>
           <div className="form-actions">
