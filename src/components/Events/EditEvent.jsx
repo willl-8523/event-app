@@ -26,9 +26,9 @@ export default function EditEvent() {
 
   if (isPending) {
     content = (
-      <iv className="center">
+      <div className="center">
         <LoadingIndicator />
-      </iv>
+      </div>
     );
   }
 
