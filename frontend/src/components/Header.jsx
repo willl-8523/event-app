@@ -12,7 +12,7 @@ export default function Header({ children }) {
       </div>
       <header id="main-header">
         <div id="header-title">
-          <h1>React Events</h1>
+          <h1>Events App</h1>
         </div>
         <nav>{children}</nav>
       </header>
