@@ -5,6 +5,14 @@ import express from 'express';
 
 const app = express();
 
+app.use(
+  cors({
+    origin: ['https://event-app-server.vercel.app'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    credentials: true,
+  })
+);
+
 app.use(bodyParser.json());
 app.use(express.static('public'));
 app.use(
