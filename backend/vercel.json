@@ -1,8 +1,5 @@
 {
   "version": 2,
   "builds": [{ "src": "./app.js", "use": "@vercel/node" }],
-  "routes": [{ "src": "/(.*)", "dest": "/" }],
-  "redirects": [
-    { "source": "/(.*)", "destination": "/index.html", "permanent": false }
-  ]
+  "routes": [{ "src": "/(.*)", "dest": "/" }]
 }
