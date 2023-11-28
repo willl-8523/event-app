@@ -5,13 +5,7 @@ import express from 'express';
 
 const app = express();
 
-app.use(
-  cors({
-    origin: ['https://event-app-server.vercel.app'],
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    credentials: true,
-  })
-);
+app.use(cors());
 
 app.use(bodyParser.json());
 app.use(express.static('public'));
@@ -180,6 +174,6 @@ app.delete('/events/:id', async (req, res) => {
   }, 1000);
 });
 
-// app.listen(3000, () => {
-//   console.log('Server running on port 3000');
-// });
+app.listen(3000, () => {
+  console.log('Server running on port 3000');
+});
