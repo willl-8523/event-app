@@ -1,4 +1,5 @@
 import fs from 'node:fs/promises';
+import path from 'path';
 
 import bodyParser from 'body-parser';
 import express from 'express';
@@ -27,7 +28,12 @@ app.get('/', (req, res) => {
 
 app.get('/events', async (req, res) => {
   const { max, search } = req.query;
-  const eventsFileContent = await fs.readFile('./data/events.json', 'utf8');
+
+  // const eventsFileContent = await fs.readFile('./data/events.json', 'utf8');
+
+  const postsDirectory = path.join(process.cwd(), 'data');
+  const filePath = path.join(postsDirectory, 'events.json');
+  const eventsFileContent = await fs.readFile(filePath, 'utf-8');
   let events = JSON.parse(eventsFileContent);
 
   if (search) {
