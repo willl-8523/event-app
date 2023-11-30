@@ -2,7 +2,7 @@ import fs from 'node:fs/promises';
 
 import bodyParser from 'body-parser';
 import express from 'express';
-import path from 'node:path';
+import path from 'path';
 
 const app = express();
 
@@ -30,7 +30,7 @@ app.get('/events', async (req, res) => {
   const { max, search } = req.query;
 
   try {
-    const filepath = path.join(process.cwd(), 'data', 'events.json');
+    const filepath = path.join(process.cwd(), 'backend', 'data/events.json');
     const eventsFileContent = await fs.readFile(filepath, {
       encoding: 'utf8',
     });
