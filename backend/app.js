@@ -30,7 +30,7 @@ app.get('/', (req, res) => {
 app.get('/events', async (req, res) => {
   res.json({
     message: 'Hello I am /events',
-    path: fs.readdirSync(process.cwd()),
+    path: fs.readdirSync(path.join(process.cwd(), 'backend')),
   });
   // const { max, search } = req.query;
 
