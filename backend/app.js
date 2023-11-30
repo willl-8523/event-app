@@ -3,6 +3,7 @@ import fs from 'node:fs/promises';
 import bodyParser from 'body-parser';
 import express from 'express';
 import path from 'node:path';
+import { fileURLToPath } from 'url';
 
 const app = express();
 
@@ -29,7 +30,7 @@ app.get('/', (req, res) => {
 app.get('/events', async (req, res) => {
   res.json({
     message: 'Hello I am /events',
-    path: readdirSync(process.cwd()),
+    path: fileURLToPath(import.meta.url),
   });
   // const { max, search } = req.query;
 
