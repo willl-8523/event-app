@@ -28,45 +28,46 @@ app.get('/', (req, res) => {
 });
 
 app.get('/events', async (req, res) => {
-  res.json({
-    message: 'Hello I am /events',
-    path: fs.readdirSync(path.join(process.cwd(), 'backend')),
-  });
-  // const { max, search } = req.query;
+  // res.json({
+  //   message: 'Hello I am /events',
+  //   path: fs.readdirSync(path.join(process.cwd(), 'backend')),
+  // });
 
-  // try {
-  //   // const filepath = path.join('data', 'events.json');
-  //   const eventsFileContent = await fs.readFile('./backend/data/events.json', {
-  //     encoding: 'utf8',
-  //   });
+  const { max, search } = req.query;
 
-  //   let events = JSON.parse(eventsFileContent);
+  try {
+    const filepath = path.join(process.cwd(), 'backend/data');
+    const eventsFileContent = await fs.readFile(filepath, 'events.json', {
+      encoding: 'utf8',
+    });
 
-  //   if (search) {
-  //     events = events.filter((event) => {
-  //       const searchableText = `${event.title} ${event.description} ${event.location}`;
-  //       return searchableText.toLowerCase().includes(search.toLowerCase());
-  //     });
-  //   }
+    let events = JSON.parse(eventsFileContent);
 
-  //   if (max) {
-  //     events = events.slice(events.length - max, events.length);
-  //   }
+    if (search) {
+      events = events.filter((event) => {
+        const searchableText = `${event.title} ${event.description} ${event.location}`;
+        return searchableText.toLowerCase().includes(search.toLowerCase());
+      });
+    }
 
-  //   res.json({
-  //     events: events.map((event) => ({
-  //       id: event.id,
-  //       title: event.title,
-  //       image: event.image,
-  //       date: event.date,
-  //       location: event.location,
-  //     })),
-  //   });
+    if (max) {
+      events = events.slice(events.length - max, events.length);
+    }
 
-  // } catch (error) {
-  //   console.error(`Erreur lors de la lecture du fichier : ${error.message}`);
-  //   res.status(500).send('Erreur interne du serveur');
-  // }
+    res.json({
+      events: events.map((event) => ({
+        id: event.id,
+        title: event.title,
+        image: event.image,
+        date: event.date,
+        location: event.location,
+      })),
+    });
+
+  } catch (error) {
+    console.error(`Erreur lors de la lecture du fichier : ${error.message}`);
+    res.status(500).send('Erreur interne du serveur');
+  }
 });
 
 app.get('/events/images', async (req, res) => {
