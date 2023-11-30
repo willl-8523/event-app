@@ -2,7 +2,7 @@ import fs from 'node:fs/promises';
 
 import bodyParser from 'body-parser';
 import express from 'express';
-import path from 'path';
+import path from 'node:path';
 
 const app = express();
 
@@ -31,8 +31,6 @@ app.get('/events', async (req, res) => {
 
   try {
     const filepath = path.join(process.cwd(), 'data', 'events.json');
-    
-    res.send(filepath);
     const eventsFileContent = await fs.readFile(filepath, {
       encoding: 'utf8',
     });
@@ -59,14 +57,13 @@ app.get('/events', async (req, res) => {
         location: event.location,
       })),
     });
+    
   } catch (error) {
+    // console.error(`Erreur lors de la lecture du fichier : ${error.message}`);
     console.error(
-      `Erreur lors de la lecture du fichier : ${path.join(
-        process.cwd(),
-        'data',
-      )}`
+      `Erreur lors de la lecture du fichier : ${await fs.readdirSync('backend')}`
     );
-    res.status(500).send('Erreur interne!');
+    res.status(500).send('Erreur interne du serveur');
   }
 });
 
