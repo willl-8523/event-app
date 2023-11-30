@@ -28,8 +28,8 @@ app.get('/', (req, res) => {
 app.get('/events', async (req, res) => {
   const { max, search } = req.query;
 
-  // try {
-    const eventsFileContent = await fs.readFile('./data/events.json', 'utf8');
+  try {
+    const eventsFileContent = await fs.readFile('/data/events.json', 'utf8');
 
     let events = JSON.parse(eventsFileContent);
 
@@ -54,10 +54,10 @@ app.get('/events', async (req, res) => {
       })),
     });
     
-  // } catch (error) {
-  //   console.error(`Erreur lors de la lecture du fichier : ${error.message}`);
-  //   res.status(500).send('Erreur interne du serveur');
-  // }
+  } catch (error) {
+    console.error(`Erreur lors de la lecture du fichier : ${error.message}`);
+    res.status(500).send('Erreur interne du serveur');
+  }
 });
 
 app.get('/events/images', async (req, res) => {
