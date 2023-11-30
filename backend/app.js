@@ -29,7 +29,9 @@ app.get('/events', async (req, res) => {
   const { max, search } = req.query;
 
   try {
-    const eventsFileContent = await fs.readFile('/backend/data/events.json', 'utf8');
+    const eventsFileContent = await fs.readFile('./data/events.json', {
+      encoding: 'utf8',
+    });
 
     let events = JSON.parse(eventsFileContent);
 
@@ -180,6 +182,6 @@ app.delete('/events/:id', async (req, res) => {
   }, 1000);
 });
 
-app.listen(4000, () => {
+app.listen(3000, () => {
   console.log('Server running on port 4000');
 });
