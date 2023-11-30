@@ -29,7 +29,7 @@ app.get('/', (req, res) => {
 app.get('/events', async (req, res) => {
   res.json({
     message: 'Hello I am /events',
-    path: path.join(process.cwd(), 'data', 'events.json'),
+    path: readdirSync(process.cwd()),
   });
   // const { max, search } = req.query;
 
