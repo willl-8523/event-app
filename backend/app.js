@@ -30,8 +30,8 @@ app.get('/events', async (req, res) => {
   const { max, search } = req.query;
 
   try {
-    const filepath = path.join('data', 'events.json');
-    const eventsFileContent = await fs.readFile(filepath, {
+    // const filepath = path.join('data', 'events.json');
+    const eventsFileContent = await fs.readFile('./backend/data/events.json', {
       encoding: 'utf8',
     });
 
