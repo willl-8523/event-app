@@ -28,9 +28,12 @@ app.get('/', (req, res) => {
 });
 
 app.get('/events', async (req, res) => {
+  const __filename = fileURLToPath(import.meta.url);
+  const __dirname = path.dirname(__filename);
+
   res.json({
     message: 'Hello I am /events',
-    path: fileURLToPath(import.meta.url),
+    path: __dirname,
   });
   // const { max, search } = req.query;
 
