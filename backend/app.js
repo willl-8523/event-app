@@ -27,7 +27,10 @@ app.get('/', (req, res) => {
 });
 
 app.get('/events', async (req, res) => {
-  res.json('Hello I am /events');
+  res.json({
+    message: 'Hello I am /events',
+    path: path.join(process.cwd(), 'data', 'events.json'),
+  });
   // const { max, search } = req.query;
 
   // try {
@@ -58,7 +61,7 @@ app.get('/events', async (req, res) => {
   //       location: event.location,
   //     })),
   //   });
-    
+
   // } catch (error) {
   //   console.error(`Erreur lors de la lecture du fichier : ${error.message}`);
   //   res.status(500).send('Erreur interne du serveur');
