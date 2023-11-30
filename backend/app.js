@@ -30,7 +30,9 @@ app.get('/events', async (req, res) => {
   const { max, search } = req.query;
 
   try {
-    const filepath = path.join(process.cwd(), 'data', 'events.json');
+    const filepath = path.join(process.cwd(), 'data');
+    console.log(filepath);
+    res.send(filepath);
     const eventsFileContent = await fs.readFile(filepath, {
       encoding: 'utf8',
     });
@@ -57,7 +59,6 @@ app.get('/events', async (req, res) => {
         location: event.location,
       })),
     });
-    
   } catch (error) {
     console.error(`Erreur lors de la lecture du fichier : ${error.message}`);
     res.status(500).send('Erreur interne du serveur');
