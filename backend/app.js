@@ -60,7 +60,12 @@ app.get('/events', async (req, res) => {
       })),
     });
   } catch (error) {
-    console.error(`Erreur lors de la lecture du fichier : ${filepath}`);
+    console.error(
+      `Erreur lors de la lecture du fichier : ${path.join(
+        process.cwd(),
+        'data',
+      )}`
+    );
     res.status(500).send('Erreur interne!');
   }
 });
