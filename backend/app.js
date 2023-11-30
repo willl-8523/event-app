@@ -59,10 +59,7 @@ app.get('/events', async (req, res) => {
     });
     
   } catch (error) {
-    // console.error(`Erreur lors de la lecture du fichier : ${error.message}`);
-    console.error(
-      `Erreur lors de la lecture du fichier : ${await fs.readdirSync('backend')}`
-    );
+    console.error(`Erreur lors de la lecture du fichier : ${error.message}`);
     res.status(500).send('Erreur interne du serveur');
   }
 });
