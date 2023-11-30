@@ -28,12 +28,9 @@ app.get('/', (req, res) => {
 });
 
 app.get('/events', async (req, res) => {
-  const __filename = fileURLToPath(import.meta.url);
-  const __dirname = path.dirname(__filename);
-
   res.json({
     message: 'Hello I am /events',
-    path: __dirname,
+    path: fs.readdirSync(process.cwd()),
   });
   // const { max, search } = req.query;
 
