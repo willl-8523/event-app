@@ -7,7 +7,7 @@ export async function fetchEvents({ signal, searchTerm, max }) {
    * Signal is to set the default parameter sent by usequery
    */
 
-  let url = 'https://event-app-api.vercel.app/events';
+  let url = 'http://localhost:3000/events';
 
   if (searchTerm && max) {
     url += '?search=' + searchTerm + '&max=' + max;

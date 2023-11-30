@@ -2,8 +2,6 @@ import fs from 'node:fs/promises';
 
 import bodyParser from 'body-parser';
 import express from 'express';
-import path from 'node:path';
-import { fileURLToPath } from 'url';
 
 const app = express();
 
@@ -28,18 +26,10 @@ app.get('/', (req, res) => {
 });
 
 app.get('/events', async (req, res) => {
-  // res.json({
-  //   message: 'Hello I am /events',
-  //   path: fs.readdirSync(path.join(process.cwd(), 'backend')),
-  // });
-
   const { max, search } = req.query;
 
   try {
-    const filepath = path.join(process.cwd(), 'backend/data/events.json');
-    const eventsFileContent = await fs.readFile(filepath, {
-      encoding: 'utf8',
-    });
+    const eventsFileContent = await fs.readFile('./data/events.json', 'utf8');
 
     let events = JSON.parse(eventsFileContent);
 
@@ -63,7 +53,7 @@ app.get('/events', async (req, res) => {
         location: event.location,
       })),
     });
-
+    
   } catch (error) {
     console.error(`Erreur lors de la lecture du fichier : ${error.message}`);
     res.status(500).send('Erreur interne du serveur');
@@ -190,6 +180,6 @@ app.delete('/events/:id', async (req, res) => {
   }, 1000);
 });
 
-app.listen(3000, () => {
+app.listen(4000, () => {
   console.log('Server running on port 4000');
 });
