@@ -6,6 +6,13 @@ import path from 'node:path';
 
 const app = express();
 
+app.use(
+  cors({
+    origin: ['https://event-app-api.vercel.app/'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    credentials: true,
+  })
+);
 app.use(bodyParser.json());
 app.use(express.static(path.join(process.cwd(), 'public')));
 
