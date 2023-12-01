@@ -74,7 +74,10 @@ app.get('/events/images', async (req, res) => {
 app.get('/events/:id', async (req, res) => {
   const { id } = req.params;
 
-  const eventsFileContent = await fs.readFile('./data/events.json');
+  const eventsFileContent = await fs.readFile(
+    filepath + '/events.json',
+    'utf8'
+  );
   const events = JSON.parse(eventsFileContent);
 
   const event = events.find((event) => event.id === id);
