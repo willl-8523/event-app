@@ -7,7 +7,8 @@ import path from 'node:path';
 const app = express();
 
 app.use(bodyParser.json());
-app.use(express.static('public'));
+// app.use(express.static('public'));
+app.use(express.static(path.join(process.cwd(), 'public')));
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -32,7 +33,10 @@ app.get('/events', async (req, res) => {
   const { max, search } = req.query;
 
   try {
-    const eventsFileContent = await fs.readFile(filepath + '/events.json', 'utf8');
+    const eventsFileContent = await fs.readFile(
+      filepath + '/events.json',
+      'utf8'
+    );
 
     let events = JSON.parse(eventsFileContent);
 
@@ -56,7 +60,6 @@ app.get('/events', async (req, res) => {
         location: event.location,
       })),
     });
-    
   } catch (error) {
     console.error(`Erreur lors de la lecture du fichier : ${error.message}`);
     res.status(500).send('Erreur interne du serveur');
