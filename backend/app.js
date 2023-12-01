@@ -3,24 +3,24 @@ import fs from 'node:fs/promises';
 import bodyParser from 'body-parser';
 import express from 'express';
 import path from 'node:path';
-import cors from 'cors';
+// import cors from 'cors';
 
 const app = express();
 
-app.use(
-  cors({
-    origin: ['https://event-app-api.vercel.app'],
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    credentials: true,
-  })
-);
+// app.use(
+//   cors({
+//     origin: ['https://event-app-api.vercel.app'],
+//     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+//     credentials: true,
+//   })
+// );
 app.use(bodyParser.json());
 app.use(express.static(path.join(process.cwd(), 'public')));
 
 app.use((req, res, next) => {
   res.setHeader(
     'Access-Control-Allow-Origin',
-    'https://event-app-api.vercel.app'
+    'https://event-app-client-git-main-nmws-projects.vercel.app/events'
   );
   res.setHeader(
     'Access-Control-Allow-Methods',
