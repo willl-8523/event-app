@@ -3,7 +3,7 @@ import fs from 'node:fs/promises';
 import bodyParser from 'body-parser';
 import express from 'express';
 import path from 'node:path';
-// import cors from 'cors';
+import cors from 'cors';
 
 const app = express();
 
