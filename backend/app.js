@@ -9,7 +9,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: ['https://event-app-client-git-main-nmws-projects.vercel.app'],
+    origin: ['https://event-app-client-git-main-nmws-projects.vercel.app/events'],
     methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
     optionsSuccessStatus: 204,
     allowedHeaders: 'Content-Type, Authorization',
