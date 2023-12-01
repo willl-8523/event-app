@@ -3,12 +3,13 @@ import fs from 'node:fs/promises';
 import bodyParser from 'body-parser';
 import express from 'express';
 import path from 'node:path';
+import cors from 'cors';
 
 const app = express();
 
 app.use(
   cors({
-    origin: ['https://event-app-api.vercel.app/'],
+    origin: ['https://event-app-api.vercel.app'],
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     credentials: true,
   })
