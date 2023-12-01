@@ -145,7 +145,7 @@ app.put('/events/:id', async (req, res) => {
     return res.status(400).json({ message: 'Invalid data provided.' });
   }
 
-  const eventsFileContent = await fs.readFile('./data/events.json');
+  const eventsFileContent = await fs.readFile(filepath + '/events.json');
   const events = JSON.parse(eventsFileContent);
 
   const eventIndex = events.findIndex((event) => event.id === id);
@@ -159,7 +159,7 @@ app.put('/events/:id', async (req, res) => {
     ...event,
   };
 
-  await fs.writeFile('./data/events.json', JSON.stringify(events));
+  await fs.writeFile(filepath + '/events.json', JSON.stringify(events));
 
   setTimeout(() => {
     res.json({ event: events[eventIndex] });
@@ -169,7 +169,7 @@ app.put('/events/:id', async (req, res) => {
 app.delete('/events/:id', async (req, res) => {
   const { id } = req.params;
 
-  const eventsFileContent = await fs.readFile('./data/events.json');
+  const eventsFileContent = await fs.readFile(filepath + '/events.json');
   const events = JSON.parse(eventsFileContent);
 
   const eventIndex = events.findIndex((event) => event.id === id);
@@ -180,7 +180,7 @@ app.delete('/events/:id', async (req, res) => {
 
   events.splice(eventIndex, 1);
 
-  await fs.writeFile('./data/events.json', JSON.stringify(events));
+  await fs.writeFile(filepath + '/events.json', JSON.stringify(events));
 
   setTimeout(() => {
     res.json({ message: 'Event deleted' });
