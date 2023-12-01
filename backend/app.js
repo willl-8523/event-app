@@ -7,7 +7,6 @@ import path from 'node:path';
 const app = express();
 
 app.use(bodyParser.json());
-// app.use(express.static('public'));
 app.use(express.static(path.join(process.cwd(), 'public')));
 
 app.use((req, res, next) => {
@@ -22,10 +21,6 @@ app.use((req, res, next) => {
   );
   next();
 });
-
-// app.get('/', (req, res) => {
-//   res.json('Hello');
-// });
 
 const filepath = path.join(process.cwd(), 'data');
 
