@@ -32,7 +32,7 @@ export async function fetchEvents({ signal, searchTerm, max }) {
 }
 
 export async function createNewEvent(eventData) {
-  const response = await fetch(`http://localhost:3000/events`, {
+  const response = await fetch(`https://event-app-api.vercel.app/events`, {
     method: 'POST',
     body: JSON.stringify(eventData),
     headers: {

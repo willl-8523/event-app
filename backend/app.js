@@ -111,7 +111,7 @@ app.post('/events', async (req, res) => {
     return res.status(400).json({ message: 'Invalid data provided.' });
   }
 
-  const eventsFileContent = await fs.readFile('./data/events.json');
+  const eventsFileContent = await fs.readFile(filepath + '/events.json', 'utf8');
   const events = JSON.parse(eventsFileContent);
 
   const newEvent = {
@@ -121,7 +121,7 @@ app.post('/events', async (req, res) => {
 
   events.push(newEvent);
 
-  await fs.writeFile('./data/events.json', JSON.stringify(events));
+  await fs.writeFile(filepath + '/events.json', JSON.stringify(events));
 
   res.json({ event: newEvent });
 });
