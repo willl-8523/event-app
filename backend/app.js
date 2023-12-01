@@ -32,8 +32,6 @@ app.get('/events', async (req, res) => {
   const { max, search } = req.query;
 
   try {
-    // const eventsFileContent = await fs.readFile('./data/events.json', 'utf8');
-    
     const eventsFileContent = await fs.readFile(filepath + '/events.json', 'utf8');
 
     let events = JSON.parse(eventsFileContent);
@@ -66,7 +64,10 @@ app.get('/events', async (req, res) => {
 });
 
 app.get('/events/images', async (req, res) => {
-  const imagesFileContent = await fs.readFile('./data/images.json');
+  const imagesFileContent = await fs.readFile(
+    filepath + '/images.json',
+    'utf8'
+  );
   const images = JSON.parse(imagesFileContent);
 
   res.json({ images });
