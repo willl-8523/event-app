@@ -20,7 +20,7 @@ app.use(express.static(path.join(process.cwd(), 'public')));
 app.use((req, res, next) => {
   res.setHeader(
     'Access-Control-Allow-Origin',
-    'https://event-app-client-git-main-nmws-projects.vercel.app/events'
+    'https://event-app-client-git-main-nmws-projects.vercel.app'
   );
   res.setHeader(
     'Access-Control-Allow-Methods',
