@@ -18,7 +18,10 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(process.cwd(), 'public')));
 
 app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader(
+    'Access-Control-Allow-Origin',
+    'https://event-app-api.vercel.app'
+  );
   res.setHeader(
     'Access-Control-Allow-Methods',
     'GET, POST, PUT, DELETE, OPTIONS'
