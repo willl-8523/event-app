@@ -53,9 +53,12 @@ export async function createNewEvent(eventData) {
 }
 
 export async function fetchSelectableImages({ signal }) {
-  const response = await fetch(`http://localhost:3000/events/images`, {
-    signal,
-  });
+  const response = await fetch(
+    `https://event-app-api.vercel.app/events/images`,
+    {
+      signal,
+    }
+  );
 
   if (!response.ok) {
     const error = new Error('An error occurred while fetching the images');
