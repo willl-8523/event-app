@@ -22,9 +22,9 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get('/', (req, res) => {
-  res.json('Hello');
-});
+// app.get('/', (req, res) => {
+//   res.json('Hello');
+// });
 
 const filepath = path.join(process.cwd(), 'data');
 
@@ -186,6 +186,6 @@ app.delete('/events/:id', async (req, res) => {
   }, 1000);
 });
 
-app.listen(4000, () => {
+app.listen(3000, () => {
   console.log('Server running on port 4000');
 });
