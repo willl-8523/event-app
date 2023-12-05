@@ -16,7 +16,8 @@ const app = express();
 //   })
 // );
 app.use(bodyParser.json());
-app.use(express.static(path.join(process.cwd(), 'public')));
+app.use(express.static('public'));
+// app.use(express.static(path.join(process.cwd(), 'public')));
 
 app.use((req, res, next) => {
   res.setHeader(
