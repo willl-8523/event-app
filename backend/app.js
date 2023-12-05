@@ -41,14 +41,14 @@ app.use((req, res, next) => {
   next();
 });
 
-const filepath = path.join(process.cwd(), 'backend');
+const filepath = path.join(process.cwd(), 'data');
 
 app.get('/events', async (req, res) => {
   const { max, search } = req.query;
 
   try {
     const eventsFileContent = await fs.readFile(
-      filepath + '/data/events.json',
+      filepath + '/events.json',
       'utf8'
     );
 
