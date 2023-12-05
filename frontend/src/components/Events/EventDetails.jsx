@@ -88,10 +88,7 @@ export default function EventDetails() {
           </nav>
         </header>
         <div id="event-details-content">
-          <img
-            src={`https://event-app-api.vercel.app/${data.image}`}
-            alt={data.title}
-          />
+          <img src={`http://localhost:3000/${data.image}`} alt={data.title} />
           <div id="event-details-info">
             <div>
               <p id="event-details-location">{data.location}</p>

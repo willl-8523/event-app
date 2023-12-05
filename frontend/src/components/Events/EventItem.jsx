@@ -8,10 +8,7 @@ export default function EventItem({ event }) {
   });
   return (
     <article className="event-item">
-      <img
-        src={`https://event-app-api.vercel.app/${event.image}`}
-        alt={event.title}
-      />
+      <img src={`http://localhost:3000/${event.image}`} alt={event.title} />
       <div className="event-item-content">
         <div>
           <h2>{event.title}</h2>

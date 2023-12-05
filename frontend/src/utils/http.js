@@ -7,7 +7,7 @@ export async function fetchEvents({ signal, searchTerm, max }) {
    * Signal is to set the default parameter sent by usequery
    */
 
-  let url = 'https://event-app-api.vercel.app/events';
+  let url = 'http://localhost:3000/events';
 
   if (searchTerm && max) {
     url += '?search=' + searchTerm + '&max=' + max;
@@ -32,7 +32,7 @@ export async function fetchEvents({ signal, searchTerm, max }) {
 }
 
 export async function createNewEvent(eventData) {
-  const response = await fetch(`https://event-app-api.vercel.app/events`, {
+  const response = await fetch(`http://localhost:3000/events`, {
     method: 'POST',
     body: JSON.stringify(eventData),
     headers: {
@@ -53,12 +53,9 @@ export async function createNewEvent(eventData) {
 }
 
 export async function fetchSelectableImages({ signal }) {
-  const response = await fetch(
-    `https://event-app-api.vercel.app/events/images`,
-    {
-      signal,
-    }
-  );
+  const response = await fetch(`http://localhost:3000/events/images`, {
+    signal,
+  });
 
   if (!response.ok) {
     const error = new Error('An error occurred while fetching the images');
@@ -73,12 +70,9 @@ export async function fetchSelectableImages({ signal }) {
 }
 
 export async function fetchEvent({ id, signal }) {
-  const response = await fetch(
-    `https://event-app-api.vercel.app/events/${id}`,
-    {
-      signal,
-    }
-  );
+  const response = await fetch(`http://localhost:3000/events/${id}`, {
+    signal,
+  });
 
   if (!response.ok) {
     const error = new Error('An error occurred while fetching the event');
