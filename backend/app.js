@@ -47,7 +47,7 @@ app.get('/events', async (req, res) => {
 
   try {
     const eventsFileContent = await fs.readFile(
-      filepath + 'data/events.json',
+      filepath + '/data/events.json',
       'utf8'
     );
 
