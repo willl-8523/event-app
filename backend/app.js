@@ -40,14 +40,14 @@ app.use(express.static(path.join(process.cwd(), 'public')));
 //   next();
 // });
 
-const filepath = path.join(process.cwd(), 'data');
+const filepath = path.join(process.cwd(), 'backend');
 
 app.get('/events', async (req, res) => {
   const { max, search } = req.query;
 
   try {
     const eventsFileContent = await fs.readFile(
-      filepath + '/events.json',
+      filepath + 'data/events.json',
       'utf8'
     );
 
