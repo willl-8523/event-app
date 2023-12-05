@@ -41,7 +41,7 @@ app.use((req, res, next) => {
   next();
 });
 
-const filepath = path.join(process.cwd(), 'backend/data');
+const filepath = path.join(process.cwd(), 'backend', 'data');
 
 app.get('/events', async (req, res) => {
   const { max, search } = req.query;
