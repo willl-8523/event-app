@@ -33,9 +33,9 @@ app.use((req, res, next) => {
   );
 
   // Répondre aux requêtes préliminaires
-  if (req.method === 'OPTIONS') {
-    return res.sendStatus(200);
-  }
+  // if (req.method === 'OPTIONS') {
+  //   return res.sendStatus(200);
+  // }
 
   next();
 });
