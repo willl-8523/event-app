@@ -3,51 +3,51 @@ import fs from 'node:fs/promises';
 import bodyParser from 'body-parser';
 import express from 'express';
 import path from 'node:path';
-import cors from 'cors';
+// import cors from 'cors';
 
 const app = express();
 
-app.use(
-  cors({
-    origin: ['https://event-app-api.vercel.app/'],
-    methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
-    optionsSuccessStatus: 204,
-    allowedHeaders: 'Content-Type, Authorization',
-  })
-);
+// app.use(
+//   cors({
+//     origin: ['https://event-app-api.vercel.app/'],
+//     methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
+//     optionsSuccessStatus: 204,
+//     allowedHeaders: 'Content-Type, Authorization',
+//   })
+// );
 app.use(bodyParser.json());
 app.use(express.static(path.join(process.cwd(), 'public')));
 
-// app.use((req, res, next) => {
-//   res.setHeader(
-//     'Access-Control-Allow-Origin',
-//     'https://event-app-client-git-main-nmws-projects.vercel.app'
-//   );
-//   res.setHeader(
-//     'Access-Control-Allow-Methods',
-//     'GET, POST, PUT, DELETE, OPTIONS'
-//   );
-//   res.setHeader(
-//     'Access-Control-Allow-Headers',
-//     'X-Requested-With,content-type'
-//   );
+app.use((req, res, next) => {
+  res.setHeader(
+    'Access-Control-Allow-Origin',
+    '*'
+  );
+  res.setHeader(
+    'Access-Control-Allow-Methods',
+    'GET, POST, PUT, DELETE, OPTIONS'
+  );
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    'X-Requested-With,content-type'
+  );
 
-//   // Répondre aux requêtes préliminaires
-//   if (req.method === 'OPTIONS') {
-//     return res.sendStatus(200);
-//   }
+  // Répondre aux requêtes préliminaires
+  if (req.method === 'OPTIONS') {
+    return res.sendStatus(200);
+  }
 
-//   next();
-// });
+  next();
+});
 
-const filepath = path.join(process.cwd(), 'backend');
+const filepath = path.join(process.cwd(), 'data');
 
 app.get('/events', async (req, res) => {
   const { max, search } = req.query;
 
   try {
     const eventsFileContent = await fs.readFile(
-      filepath + '/data/events.json',
+      filepath + '/events.json',
       'utf8'
     );
 
